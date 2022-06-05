@@ -148,7 +148,7 @@ def main():
     args = get_script_arguments()
 
     if args.task in ['m4', 'dummy']:
-        model = NBeatsNet(backcast_length=10, forecast_length=1,
+        model = NBeatsNet(backcast_length=40, forecast_length=10,
                           stack_types=(NBeatsNet.GENERIC_BLOCK, NBeatsNet.GENERIC_BLOCK), nb_blocks_per_stack=2,
                           thetas_dim=(4, 4), share_weights_in_stack=True, hidden_layer_units=128)
     elif args.task == 'kcg':
@@ -157,7 +157,7 @@ def main():
                           thetas_dim=(4, 8), share_weights_in_stack=False,
                           hidden_layer_units=256)
     elif args.task == 'nrj':
-        model = NBeatsNet(input_dim=1, exo_dim=2, backcast_length=10, forecast_length=1,
+        model = NBeatsNet(input_dim=1, exo_dim=0, backcast_length=10, forecast_length=1,
                           stack_types=(NBeatsNet.TREND_BLOCK, NBeatsNet.SEASONALITY_BLOCK), nb_blocks_per_stack=2,
                           thetas_dim=(4, 8), share_weights_in_stack=False, hidden_layer_units=128,
                           nb_harmonics=10)

@@ -323,11 +323,15 @@ def process_data_gen():
     return x_tl
 
 
-def get_x_y_data(backcast_length, forecast_length):
+
+def get_x_y_data(backcast_length, forecast_length, file=None):
     x = np.array([]).reshape(0, backcast_length)
     y = np.array([]).reshape(0, forecast_length)
 
-    time_series = process_data_price()[:-1]
+    if file is not None:
+        time_series = file
+    else:
+        time_series = process_data_price()[:-1]
 
     time_series_cleaned_forlearning_x = np.zeros(
         (time_series.shape[0] + 1 - (backcast_length + forecast_length), backcast_length))
